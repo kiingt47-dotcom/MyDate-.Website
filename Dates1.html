@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<head><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Date"s DATE FIX</title></head>
+<link rel="stylesheet" href="Dates1.css">
+<body>
+<div class="main">
+    <div class="m1">
+    <input type="date" id="date">
+   <img class="teddy" src="Teddy7.gif">
+    <h1>Thankyou My LOVE For Accepting Date😘</h1>
+    <h2>Now Above lock the date For Our Date.💘</h2>
+    <button type="button" id="continueBtn"> Continue ❤️</button>
+    
+
+<script>
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwtXr_eyTvYeFC8KvJmwy6_53C_cD2tSHi8M7Nfki4-hyOmJtrPB73kT7nWA9e0mdqq/exec";
+
+const params = new URLSearchParams(window.location.search);
+
+const senderID = params.get("sender") || "TEST";
+
+
+document.getElementById("continueBtn").onclick = async function () {
+
+    const selectedDate = document.getElementById("date").value;
+
+    if (!selectedDate) {
+        alert("Please select a date ❤️");
+        return;
+    }
+
+    this.disabled = true;
+    this.innerText = "Saving... ❤️";
+
+
+    try {
+
+        await fetch(GOOGLE_SCRIPT_URL, {
+            method: "POST",
+            mode: "no-cors",
+            body: JSON.stringify({
+                sender: senderID,
+                date: selectedDate
+            })
+        });
+
+
+        window.location.href = "Dates2.html";
+
+    } catch (error) {
+
+        console.log(error);
+
+        alert("Something went wrong. Please try again ❤️");
+
+        this.disabled = false;
+        this.innerText = "Continue";
+
+    }
+
+};
+
+</script>
+
+    </div>
+    </div>
+</body>
+</html>
+
+
+

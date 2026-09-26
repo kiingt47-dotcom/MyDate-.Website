@@ -1,0 +1,93 @@
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+img,
+video {
+    max-width: 100%;
+    height: auto;
+}
+ .main
+ {
+    
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+    background-color: rgb(190, 50, 90);
+}
+ 
+
+ .m1
+ { text-align:center;
+padding-top: 40px;  
+margin: 0 auto;
+color: white;
+text-shadow:
+        2px 2px 0 rgb(70, 0, 20),
+        -2px -2px 0 rgb(70, 0, 20),
+        2px -2px 0 rgb(70, 0, 20),
+        -2px 2px 0 rgb(70, 0, 20);
+ }
+ 
+
+ .teddy
+ { 
+    display: block;
+    margin: 0 auto;
+    height: 300px;
+    padding-top: 75px;
+ }
+  button
+  {
+    height: 80px;
+    width: 190px;
+    text-align: center;
+    text-decoration:white;
+    font-weight: bolder;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    font-size: x-large;
+    background-color:rgb(255, 245, 249);
+    border-radius: 45px;
+    cursor:pointer;
+  }
+
+  #date{
+    color: black;
+    height: 40px;
+    width: 350px;
+    border-radius: 45px;
+    box-sizing: border-box;
+    padding: 10px 14px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-align: center;
+    font-weight: bolder;
+    font-size: x-large;
+    cursor: pointer;
+   border: 2px solid #000;
+   display: block;
+    margin: 20px auto;
+  }
+
+
+@media (max-width: 600px) {
+    #date {
+        width: 85%;
+        max-width: 300px;
+        height: 52px;
+        font-size: 17px;
+        padding: 10px;
+    }
+}

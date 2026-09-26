@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Your Date ❤️</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background: #ffd6e7;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        .box {
+            width: 100%;
+            max-width: 450px;
+            background: white;
+            padding: 35px 20px;
+            border-radius: 20px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.15);
+        }
+
+        h1 {
+            color: #ff4f81;
+        }
+
+        #dateResult {
+            font-size: 24px;
+            color: #333;
+            margin-top: 25px;
+            font-weight: bold;
+        }
+
+        .loading {
+            color: #777;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <div class="box">
+
+        <h1>💕 Your Date</h1>
+
+        <div id="dateResult" class="loading">
+            Checking...
+        </div>
+
+    </div>
+
+
+<script>
+
+const GOOGLE_SCRIPT_URL =
+"https://script.google.com/macros/s/AKfycbwtXr_eyTvYeFC8KvJmwy6_53C_cD2tSHi8M7Nfki4-hyOmJtrPB73kT7nWA9e0mdqq/exec"
+
+const params =
+    new URLSearchParams(window.location.search);
+
+
+const senderID =
+    params.get("sender");
+
+
+const result =
+    document.getElementById("dateResult");
+
+
+if (!senderID) {
+
+    result.innerText =
+        "Invalid link ❤️";
+
+} else {
+
+    fetch(
+        GOOGLE_SCRIPT_URL +
+        "?sender=" +
+        encodeURIComponent(senderID)
+    )
+
+    .then(response => response.json())
+
+    .then(data => {
+
+        if (data.found) {
+
+            result.innerHTML =
+                "They selected:<br><br>📅 " +
+                data.date +
+                " ❤️";
+
+        } else {
+
+            result.innerText =
+                "No date has been selected yet ❤️";
+
+        }
+
+    })
+
+    .catch(error => {
+
+        result.innerText =
+            "Something went wrong. Please try again.";
+
+    });
+
+}
+
+</script>
+
+</body>
+
+</html>

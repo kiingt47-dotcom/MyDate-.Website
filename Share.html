@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Create Your Date Link ❤️</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background: #ffd6e7;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        .box {
+            width: 100%;
+            max-width: 450px;
+            background: white;
+            padding: 30px 20px;
+            border-radius: 20px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.15);
+        }
+
+        h1 {
+            color: #ff4f81;
+            font-size: 28px;
+        }
+
+        p {
+            color: #555;
+            line-height: 1.5;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            margin: 10px 0;
+            font-size: 15px;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 10px;
+            background: #ff4f81;
+            color: white;
+            font-size: 17px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        .result {
+            display: none;
+            margin-top: 20px;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <div class="box">
+
+        <h1>💕 Create Your Date Link</h1>
+
+        <p>
+            Create your personal link and send it to someone.
+        </p>
+
+        <button id="createBtn">
+            Create My Link ❤️
+        </button>
+
+
+        <div class="result" id="result">
+
+            <p>Your personal link:</p>
+
+            <input type="text"
+                   id="shareLink"
+                   readonly>
+
+            <button id="copyBtn">
+                Copy Link 📋
+            </button>
+
+            <button id="checkBtn">
+                Check Selected Date 💕
+            </button>
+
+        </div>
+
+    </div>
+
+
+<script>
+
+function createID() {
+
+    if (window.crypto && crypto.randomUUID) {
+
+        return crypto.randomUUID();
+
+    }
+
+    return Date.now().toString(36) +
+           Math.random().toString(36).substring(2);
+
+}
+
+
+document.getElementById("createBtn").onclick = function () {
+
+    const senderID = createID();
+
+
+    /*
+       This automatically uses the SAME online
+       website where share.html is currently open.
+    */
+
+    const websiteFolder =
+        window.location.origin +
+        window.location.pathname.substring(
+            0,
+            window.location.pathname.lastIndexOf("/") + 1
+        );
+
+
+    const dateLink =
+        websiteFolder +
+        "date.html?sender=" +
+        encodeURIComponent(senderID);
+
+
+    const resultLink =
+        websiteFolder +
+        "result.html?sender=" +
+        encodeURIComponent(senderID);
+
+
+    document.getElementById("shareLink").value =
+        dateLink;
+
+
+    document.getElementById("result").style.display =
+        "block";
+
+
+    document.getElementById("copyBtn").onclick =
+        function () {
+
+            navigator.clipboard.writeText(dateLink);
+
+            this.innerText = "Copied! ❤️";
+
+            setTimeout(() => {
+
+                this.innerText = "Copy Link 📋";
+
+            }, 2000);
+
+        };
+
+
+    document.getElementById("checkBtn").onclick =
+        function () {
+
+            window.location.href =
+                resultLink;
+
+        };
+
+};
+
+</script>
+
+</body>
+
+</html>
