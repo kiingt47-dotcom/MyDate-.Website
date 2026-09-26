@@ -16,7 +16,7 @@ const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwtXr_eyTvYeF
 
 const params = new URLSearchParams(window.location.search);
 
-const senderID = params.get("sender") || "TEST";
+const senderID = params.get("sender");
 
 
 document.getElementById("continueBtn").onclick = async function () {
