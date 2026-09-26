@@ -14,6 +14,9 @@
 <script>
 const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwtXr_eyTvYeFC8KvJmwy6_53C_cD2tSHi8M7Nfki4-hyOmJtrPB73kT7nWA9e0mdqq/exec";
 
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwtXr_eyTvYeFC8KvJmwy6_53C_cD2tSHi8M7Nfki4-hyOmJtrPB73kT7nWA9e0mdqq/exec";
+
+
 const params = new URLSearchParams(window.location.search);
 
 const senderID = params.get("sender");
@@ -21,42 +24,67 @@ const senderID = params.get("sender");
 
 document.getElementById("continueBtn").onclick = async function () {
 
-    const selectedDate = document.getElementById("date").value;
+    const selectedDate =
+        document.getElementById("date").value;
+
 
     if (!selectedDate) {
+
         alert("Please select a date ❤️");
+
         return;
+
     }
-    if (!senderID) {
-    alert("Please open the personal link created by Share page ❤️");
-    return;
-}
+
 
     this.disabled = true;
+
     this.innerText = "Saving... ❤️";
 
 
     try {
 
+        /*
+        If this page was opened from a personal
+        Share link, save the sender ID.
+        If it was opened normally, use NORMAL.
+        */
+
+        const senderToSave =
+            senderID || "NORMAL";
+
+
         await fetch(GOOGLE_SCRIPT_URL, {
+
             method: "POST",
+
             mode: "no-cors",
+
             body: JSON.stringify({
-                sender: senderID,
+
+                sender: senderToSave,
+
                 date: selectedDate
+
             })
+
         });
 
 
-        window.location.href = "Dates2.html";
+        window.location.href =
+            "Dates2.html";
+
 
     } catch (error) {
 
         console.log(error);
 
-        alert("Something went wrong. Please try again ❤️");
+        alert(
+            "Something went wrong. Please try again ❤️"
+        );
 
         this.disabled = false;
+
         this.innerText = "Continue";
 
     }
