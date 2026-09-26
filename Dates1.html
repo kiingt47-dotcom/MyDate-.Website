@@ -27,6 +27,10 @@ document.getElementById("continueBtn").onclick = async function () {
         alert("Please select a date ❤️");
         return;
     }
+    if (!senderID) {
+    alert("Please open the personal link created by Share page ❤️");
+    return;
+}
 
     this.disabled = true;
     this.innerText = "Saving... ❤️";
