@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -106,9 +107,18 @@ if (!senderID) {
 
         if (data.found) {
 
+            const selectedDate = new Date(data.date);
+
+            const formattedDate =
+                selectedDate.toLocaleDateString("en-IN", {
+                    day: "2-digit",
+                    month: "2-digit",
+                    year: "numeric"
+                });
+
             result.innerHTML =
                 "They selected:<br><br>📅 " +
-                data.date +
+                formattedDate +
                 " ❤️";
 
         } else {
@@ -134,3 +144,4 @@ if (!senderID) {
 </body>
 
 </html>
+```
