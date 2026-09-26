@@ -17,78 +17,54 @@ const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwtXr_eyTvYeF
 
 
 const params = new URLSearchParams(window.location.search);
-
 const senderID = params.get("sender");
 
+const continueBtn = document.getElementById("continueBtn");
+const dateInput = document.getElementById("date");
 
-document.getElementById("continueBtn").onclick = async function () {
+continueBtn.onclick = async function () {
 
-    const selectedDate =
-        document.getElementById("date").value;
-
+    // Check date first
+    const selectedDate = dateInput.value;
 
     if (!selectedDate) {
-
         alert("Please select a date ❤️");
-
         return;
-
     }
 
+    // Disable button while saving
+    continueBtn.disabled = true;
+    continueBtn.innerText = "Saving... ❤️";
 
-    this.disabled = true;
-
-    this.innerText = "Saving... ❤️";
-
+    // Normal website = NORMAL
+    // Personal link = actual sender ID
+    const senderToSave = senderID || "NORMAL";
 
     try {
 
-        /*
-        If this page was opened from a personal
-        Share link, save the sender ID.
-        If it was opened normally, use NORMAL.
-        */
-
-        const senderToSave =
-            senderID || "NORMAL";
-
-
         await fetch(GOOGLE_SCRIPT_URL, {
-
             method: "POST",
-
             mode: "no-cors",
-
             body: JSON.stringify({
-
                 sender: senderToSave,
-
                 date: selectedDate
-
             })
-
         });
 
-
-        window.location.href =
-            "Dates2.html";
-
+        // Go to next page
+        window.location.href = "Dates2.html";
 
     } catch (error) {
 
         console.log(error);
 
-        alert(
-            "Something went wrong. Please try again ❤️"
-        );
+        alert("Something went wrong. Please try again ❤️");
 
-        this.disabled = false;
-
-        this.innerText = "Continue";
-
+        continueBtn.disabled = false;
+        continueBtn.innerText = "Continue";
     }
-
 };
+
 
 </script>
 
