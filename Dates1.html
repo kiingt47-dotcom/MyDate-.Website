@@ -17,28 +17,19 @@ const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwtXr_eyTvYeF
 
 
 const params = new URLSearchParams(window.location.search);
-const senderID = params.get("sender");
+const senderID = params.get("sender") || "TEST";
 
-const continueBtn = document.getElementById("continueBtn");
-const dateInput = document.getElementById("date");
+document.getElementById("continueBtn").onclick = async function () {
 
-continueBtn.onclick = async function () {
-
-    // Check date first
-    const selectedDate = dateInput.value;
+    const selectedDate = document.getElementById("date").value;
 
     if (!selectedDate) {
         alert("Please select a date ❤️");
         return;
     }
 
-    // Disable button while saving
-    continueBtn.disabled = true;
-    continueBtn.innerText = "Saving... ❤️";
-
-    // Normal website = NORMAL
-    // Personal link = actual sender ID
-    const senderToSave = senderID || "NORMAL";
+    this.disabled = true;
+    this.innerText = "Saving... ❤️";
 
     try {
 
@@ -46,12 +37,11 @@ continueBtn.onclick = async function () {
             method: "POST",
             mode: "no-cors",
             body: JSON.stringify({
-                sender: senderToSave,
+                sender: senderID,
                 date: selectedDate
             })
         });
 
-        // Go to next page
         window.location.href = "Dates2.html";
 
     } catch (error) {
@@ -60,8 +50,8 @@ continueBtn.onclick = async function () {
 
         alert("Something went wrong. Please try again ❤️");
 
-        continueBtn.disabled = false;
-        continueBtn.innerText = "Continue";
+        this.disabled = false;
+        this.innerText = "Continue";
     }
 };
 
