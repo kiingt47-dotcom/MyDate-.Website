@@ -109,15 +109,14 @@ text-shadow:
 /* Mobile */
 @media (max-width: 600px) {
 
-    #date {
-        width: 85%;
+   #date {
+        width: 105%;
         max-width: 300px;
-        height: 52px;
+        height: 62px;
         font-size: 17px;
         padding: 10px;
         color: #333;
     }
-
     #date::-webkit-datetime-edit {
         color: #333;
     }
