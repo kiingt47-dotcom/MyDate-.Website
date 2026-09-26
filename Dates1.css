@@ -91,3 +91,45 @@ text-shadow:
         padding: 10px;
     }
 }
+
+#date {
+    width: 220px;
+    height: 50px;
+    padding: 10px 14px;
+    font-size: 17px;
+    border: 2px solid #000;
+    border-radius: 10px;
+    box-sizing: border-box;
+    display: block;
+    margin: 20px auto;
+    color: #333;
+    background-color: white;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+
+    #date {
+        width: 85%;
+        max-width: 300px;
+        height: 52px;
+        font-size: 17px;
+        padding: 10px;
+        color: #333;
+    }
+
+    #date::-webkit-datetime-edit {
+        color: #333;
+    }
+
+    #date::-webkit-datetime-edit-text {
+        color: #777;
+    }
+
+    #date::-webkit-datetime-edit-month-field,
+    #date::-webkit-datetime-edit-day-field,
+    #date::-webkit-datetime-edit-year-field {
+        color: #333;
+    }
+
+}
